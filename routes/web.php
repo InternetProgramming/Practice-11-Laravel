@@ -27,8 +27,10 @@ Route::get('/users/{id}', function ($id) {
     return "User detail: {$id}";
 })->where('id', '[0-9]+');
 
-Route::get('/welcome/{name}/{nickname}', function ($name, $nickname = null) {
-    if (nickname){
+Route::get('/welcome/{name}/{nickname?}', function ($name, $nickname = null) {
+    $name = ucfirst($name);
+    if ($nickname){
+        $nickname = ucfirst($nickname);
         return "Welcome {$name}, your nickname is {$nickname}";
     } else {
         return "Welcome {$name}";
